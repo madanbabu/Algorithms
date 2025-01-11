@@ -1,0 +1,48 @@
+Here's an algorithm in Haskell to test memory usage:
+
+### Step-by-step thought process:
+
+1. We'll create a function that allocates increasing amounts of memory and measures the peak memory usage.
+2. We'll use the `deepseq` function to force evaluation and measure memory usage after each allocation.
+3. We'll use the `System.Mem` module to get the current memory usage.
+4. We'll gradually increase the allocation size until we reach a maximum or hit an error.
+
+### Key points to consider:
+
+- Memory usage can vary between runs due to system load and other processes.
+- We need to be careful not to exhaust system resources.
+- The algorithm should be able to handle different allocation sizes.
+
+### Summary and best practices:
+
+This implementation does the following:
+
+1. Defines a `testMemory` function that allocates a list of increasing size and measures the memory usage before and after forcing evaluation.
+2. Uses `listArray` to create a large array, which is a memory-intensive operation.
+3. Uses `getForeignAllocations` from `System.Mem` to measure memory usage.
+4. Calculates the difference in memory usage to determine how much memory was actually allocated.
+5. Runs the test for increasingly larger allocation sizes up to 16 million elements.
+
+Best practices followed:
+- Using `deepseq` to force evaluation and measure peak memory usage.
+- Gradually increasing allocation size to test different levels of memory consumption.
+- Measuring memory usage before and after allocation to account for temporary allocations.
+
+To use this script, save it to a file (e.g., `memory_test.hs`) and run it with:
+
+ghc --make memory_test.hs
+./memory_test
+
+This script will gradually increase the allocation size and measure memory usage. Keep in mind that this is a basic test and may not accurately reflect real-world memory usage patterns. For more comprehensive memory testing, you might want to consider using profiling tools or more specialized memory testing libraries.
+
+Refrences:
+[1] https://stackoverflow.com/questions/61666819/haskell-how-to-detect-lazy-memory-leaks
+[2] https://pusher.com/blog/making-efficient-use-of-memory-in-haskell/
+[3] https://medium.com/datafrontiers/efficient-haskell-programming-overcoming-memory-usage-challenges-71ef6c5640b3
+[4] https://www.haskellforall.com/2015/12/compile-time-memory-safety-using-liquid.html
+[5] https://www.channable.com/tech/lessons-in-managing-haskell-memory
+[6] https://blog.ploeh.dk/2019/03/11/an-example-of-state-based-testing-in-haskell/
+[7] https://book.realworldhaskell.org/read/profiling-and-optimization.html
+[8] https://github.com/cdepillabout/testing-code-that-accesses-db-in-haskell/blob/master/with-db/in-memory-db/test/Test.hs
+[9] https://wiki.haskell.org/Memory_leak
+[10] https://www.youtube.com/watch?v=nIyaC3JtlyQ
