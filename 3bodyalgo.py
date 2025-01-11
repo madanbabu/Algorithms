@@ -47,7 +47,8 @@ def simulate(bodies, dt, steps):
 
 def main():
     # Define initial conditions (modify as needed)
-    bodies = [
+    bodies = 
+    [
         Body(10, [-10, 10, -11], [-3, 0, 0]),
         Body(20, [0, 0, 0], [0, 0, 0]),
         Body(30, [10, 10, 12], [3, 0, 0]),
